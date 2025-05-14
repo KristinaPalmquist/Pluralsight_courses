@@ -1,0 +1,20 @@
+LOL - laugh out loud
+IDK - i don't know
+TBH - to be honest
+IDE - Integrated DEvelopment Environment
+OOP - Object Oriented Programming
+UX - User Experience
+JSON - JavaScript Object Notation
+FIFO - First in First Out
+LIFO - Last in First out
+TDD - Test Driven Development
+SaaS - Software as a Service
+PaaS - Platform as a Service
+IaaS - Infrastructure as a Service
+SMH - shaking my head
+BFN - bye for now
+IMHO - in my humble opinion
+BTW - by the way
+IIRC - if i recall correctly
+ML - Machine Learning
+AI - Artificial Intelligence

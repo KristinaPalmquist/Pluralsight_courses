@@ -2,6 +2,17 @@ acronyms = {
     'LOL': 'laugh out loud',
     'IDK': "i don't know",
     'TBH': 'to be honest',
+    'IDE': 'Integrated DEvelopment Environment',
+    'OOP': 'Object Oriented Programming',
+    'UX': 'User Experience',
+    'JSON': 'JavaScript Object Notation',
+    'FIFO': 'First in First Out',
+    'LIFO': 'Last in First out',
+    'TDD': 'Test Driven Development',
+    'SaaS': 'Software as a Service',
+    'PaaS': 'Platform as a Service',
+    'IaaS': 'Infrastructure as a Service',
+    
 }
 
 acronyms['SMH'] = 'shaking my head'
@@ -35,12 +46,21 @@ for key in acronyms:
             
 # print(new_sentence)
 
-# word = 'BFN'
+word = 'BTW'
 
 # if word in acronyms:
 #     print('Word is in the list')
 # else:
 #     print('The sword is not in the list ' +  word)
+    
+try:
+    definition = acronyms[word]
+    print(definition.capitalize())
+except:
+    print('The key does not exist')
+finally:
+    print('This will always print')
+print('this will be printed as the program continues executing')
     
 # for acr in acronyms:
 #     print(acr)

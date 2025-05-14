@@ -1,7 +1,7 @@
 import requests
 
 api_key = '9a69fce6bfc44077800110711250905'
-location = 'Orlando'
+location = 'Stockholm'
 api_url = 'http://api.weatherapi.com/v1/current.json?key=' + api_key + '&q=' + location + '&aqi=no'
 response = requests.get(api_url)
 weather_json = response.json()
