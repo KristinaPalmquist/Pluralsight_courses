@@ -1,6 +1,7 @@
 import collections
+from dataclasses import dataclass, field
 from order_item import OrderItem
-from dataclasses import dataclass
+from customer import Customer
 
 def consume(it):
     collections.deque(it, maxlen=0)
@@ -14,18 +15,16 @@ def get_updated_tuple(p, f, it):
 @dataclass(frozen=True)
 class Order:
     # class attribute
-    orders: tuple = ()
-    __slots__ = ('orderid', 'shipping_address', 'expedited', 'shipped', 'customer', 'order_items')
+    orders: tuple = field(init=False)
     
+    # instance attributes
+    orderid: str
+    shipping_address: str
+    expedited: bool
+    shipped: bool
+    customer: str
+    order_items: tuple[OrderItem, ...]
     
-    def __init__(self, orderid, shipping_address, expedited, shipped, customer, order_items):
-        super().__init__()
-        self.orderid = orderid
-        self.shipping_address = shipping_address
-        self.expedited = expedited
-        self.shipped = shipped
-        self.customer = customer
-        self.order_items = order_items
     
     # @staticmethod
     # def mark_backordered(orders, orderid, itemnumber):
