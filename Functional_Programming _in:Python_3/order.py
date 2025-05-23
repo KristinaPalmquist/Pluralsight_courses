@@ -1,10 +1,10 @@
-import collections
+from collections import deque, namedtuple
 from dataclasses import dataclass, field
 from order_item import OrderItem
 from customer import Customer
 
 def consume(it):
-    collections.deque(it, maxlen=0)
+    deque(it, maxlen=0)
 
 def action_if(f, g, it):
     consume(f(i) for i in it if g(i))
@@ -25,25 +25,39 @@ class Order:
     customer: str
     order_items: tuple[OrderItem, ...]
     
+    def __post__init(self):
+        match (self.orderid, self.shipping_address, self.expedited, self.shipped, self.customer):
+            case(int(), str(), bool(), bool(), Customer()):
+                pass
+            case (o, str(), bool(), bool(), Customer()):
+                raise ValueError(f'Order id {o} is not an integer')
+            case (int(), a, bool(), bool(), Customer()):
+                raise ValueError(f'Shipping address {a} is not a string')
+            case(int(), str(), e, bool(), Customer()):
+                raise ValueError(f'Expedited flag {e} is not a boolean')
+            case(int(), str(), bool(), s, Customer()):
+                raise ValueError(f'Shiped flag {s} is not a boolean')
+            case(int(), str(), bool(), bool(), c):
+                raise ValueError(f'{c} is not a customer object')
+            case _:
+                raise ValueError(f'unable to parse arguments')
+        
+        match self.order_items:
+            case tuple(t):
+                for oi in t:
+                    match oi:
+                        case OrderItem():
+                            pass
+                        case bad:
+                            raise ValueError(f'Invalid order item {bad}')
+            case _:
+                raise ValueError('Order items are not a tuple')
+                
     
-    # @staticmethod
-    # def mark_backordered(orders, orderid, itemnumber):
-    #     return Order.map(lambda o: 
-    #         # copy all orders that do not match the orderid
-    #         o if o.orderid != orderid 
-    #         # otherwise build a new order with a new order items list
-    #         else (Order(o.orderid, o.shipping_address, o.expedited, o.shipped, o.customer,
-    #                     Order.map(lambda i:
-    #                         # copy the items that don't match
-    #                         i if i.itemnumber != itemnumber
-    #                         #otherwise build a new order item setting backordered to True
-    #                         else OrderItem(i.name, i.itemnumber, i.quantity, i.price, True),
-    #                         #iterate over all order items
-    #                         o.order_items)
-    #                     )),
-    #             # iterate over all orders
-    #             orders
-    #         )
+    @staticmethod
+    def get_order_details(orders):
+        d = namedtuple('OrderDetails', 'orderid, customer, expedited, itemnumber, item, total price, backordered')
+        return (d(o.orderid, o.customer.name, o.expedited, i.itemnumber, i.name, i.price * i.      quantity, i.backordered) for o in orders for i in o.order_items)
     
     @staticmethod
     def mark_backordered(orders, orderid, itemnumber):
@@ -80,20 +94,12 @@ class Order:
         return order.shipping_address
     
     @staticmethod
-    def filter(predicate, it):
-        return list(filter(predicate, it))
-    
-    @staticmethod
-    def map(func, it):
-        return list(map(func, it))
-    
-    @staticmethod
     def get_filtered_info(predicate, func, orders):
-        return Order.map(func, Order.filter(predicate, orders))
+        return map(func, filter(predicate, orders))
     
     @staticmethod
     def get_order_by_id(orderid, orders):
-        return Order.filter(lambda order: order.orderid == orderid, orders)
+        return filter(lambda order: order.orderid == orderid, orders)
     
     @staticmethod
     def notify_backordered(orders, msg):
@@ -105,7 +111,7 @@ class Order:
     
     @staticmethod
     def set_order_expedited(orderid, orders):
-        # Order.map(lambda order: order.expedited = True, Order.get_order_by_id(orderid, orders))
+        # map(lambda order: order.expedited = True, Order.get_order_by_id(orderid, orders)) # use map instead (?)
         for order in Order.get_order_by_id(orderid, orders):
             order.expedited = True
     

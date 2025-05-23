@@ -9,12 +9,8 @@ class OrderItem:
     price: float
     backordered: bool
     
-    def __init__(self, name, itemnumber, quantity, price, backordered):
-        super().__init__()
-        self.name = name
-        self.itemnumber = itemnumber
-        self.quantity = quantity
-        self.price = price
-        self.backordered = backordered
+    @property
+    def total_price(self):
+        return self.quantity * self.price
         
     

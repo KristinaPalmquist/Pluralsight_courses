@@ -1,7 +1,10 @@
-from immutable import Immutable
+from dataclasses import dataclass
 
-class Customer(Immutable):
-    __slots__ = ('name', 'address', 'enterprise')
+@dataclass(frozen=True)
+class Customer:
+    name: str
+    address: str
+    enterprise: bool
     
     def __init__(self, name, address, enterprise):
         super().__init__()
