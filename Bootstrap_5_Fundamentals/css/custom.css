@@ -1,0 +1,33 @@
+body {
+  padding: 3rem 0;
+  background-image: url("../images/pattern.png");
+  background-repeat: repeat;
+}
+
+/* .row > [class^="col"] {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: rgba(182, 89, 27, 0.25);
+  border: 1px solid rgba(228, 75, 15, 0.4);
+}
+
+.row {
+  margin-top: 0.25em;
+}
+
+.sample-bgcolor {
+  background-color: rgba(182, 89, 27, 0.25);
+} */
+
+.bg-dark {
+  /* background-color: #a593c2 !important; */
+  /* background-color: #5e7a66 !important;*/
+  background-color: #88318a !important;
+}
+
+/* cards */
+.card-footer {
+  background: transparent;
+  border-top: 0px;
+}
+

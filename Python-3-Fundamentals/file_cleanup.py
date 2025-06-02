@@ -15,18 +15,24 @@ import os
 # #         print('File: ', entry.name)
 # #     elif os.path.isdir(entry):
 # #         print('Directory: ', entry.name)
-        
+
 # folder_original = '/Users/Kristina/Desktop/'
 # # # os.mkdir(folder_original + 'CleanedUp/' + 'Screenshots')
 # folder_destination = '/Users/Kristina/Desktop/CleanedUp/Screenshots/'
 
 
-# location_original = os.path.join(folder_original, 'Screenshot 2025-04-19 at 18.07.15.png')
-# location_destination = os.path.join(folder_destination, 'Screenshot 2025-04-19 at 18.07.15.png')
+# location_original = os.path.join(
+#     folder_original,
+#     'Screenshot 2025-04-19 at 18.07.15.png'
+# )
+# location_destination = os.path.join(
+#     folder_destination,
+#     'Screenshot 2025-04-19 at 18.07.15.png'
+# )
 # os.rename(location_original, location_destination)
 # # for each file in the Desktop/ folder
 #     # move the file to the CleanedUp/ folder
-    
+
 """ clean up screenshots """
 folder_original = '/Users/Kristina/Desktop/'
 folder_destination = '/Users/Kristina/Desktop/CleanedUp/Screenshots/'
