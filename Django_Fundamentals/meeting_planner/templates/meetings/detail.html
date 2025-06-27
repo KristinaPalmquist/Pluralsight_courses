@@ -1,0 +1,38 @@
+<!-- prettier-ignore -->
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}Meeting:{{ meeting.title}} {%endblock%} 
+{% block content %}
+
+<h1>{{meeting.title}}</h1>
+<p>
+  This meeting has been scheduled on {{meeting.date}}, at
+  {{meeting.start_time}} in
+  <strong>{{meeting.room}}</strong>
+</p>
+<h2>Participants</h2>
+<ul>
+  {% for participant in meeting.participants.all %}
+  <li>{{participant.username}}</li>
+  {% endfor%}
+</ul>
+
+<div
+  style="
+    display: flex;
+    width: 50vw;
+    justify-content: space-between;
+    padding: 2rem;
+  "
+>
+  <a href="{% url 'edit' meeting.id %}"
+    >Change this meeting</a
+  >
+
+  <a href="{% url 'delete' meeting.id %}"
+    >Delete this meeting</a
+  >
+
+  <a href="{% url 'welcome' %}">Home</a>
+</div>
+{%endblock%}
