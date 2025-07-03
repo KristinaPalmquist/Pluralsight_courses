@@ -1,0 +1,24 @@
+<!-- prettier-ignore -->
+{% load static %}
+{% load l10n %}
+
+<!DOCTYPE html>
+<html lang="en">
+  {% load i18n %}
+  <head>
+    <link
+      rel="stylesheet"
+      href="{% static 'style.css' %}"
+    />
+  </head>
+  <body>
+    <h1>Hello Static!</h1>
+    <p class="red">{% translate "This should be red" %}</p>
+    <div>
+      <p>{{ today }}</p>
+    </div>
+    <div>
+      <p>{{ today | unlocalize }}</p>
+    </div>
+  </body>
+</html>
