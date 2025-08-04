@@ -1,0 +1,10 @@
+{% if results | length == 0 %}
+<p></p>
+
+{% elif results | length == 1 %}
+<p>{{ results | length }} result</p>
+
+{% else %}
+<p>{{ results | length }} results</p>
+
+{% endif %}

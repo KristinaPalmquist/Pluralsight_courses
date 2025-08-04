@@ -1,0 +1,16 @@
+<!-- prettier-ignore -->
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+
+{% load custom_tags %}
+<h2 class="subtitle text-center my-5">{{ subtitle }}</h2>
+
+<!-- prettier-ignore -->
+{% comment %} {% include 'articles/includes.count.html' with
+results=results pathname=pathname %}  {% endcomment %}
+{{ results | display_length }}
+{% for result in results %}
+{% include "articles/includes/card.html" with result=result %}
+{% endfor %} 
+{% endblock %}

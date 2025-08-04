@@ -1,0 +1,11 @@
+<nav class="nav">
+  <div class="container">
+    <ul>
+      {% for link in links %}
+      <li>
+        <a href="{{link.path}}">{{ link.name }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>

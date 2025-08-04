@@ -1,0 +1,21 @@
+{% load custom_tags %}
+<div class="card flex flex-row result-card">
+  <img
+    src="{{ result.thumbnail }}"
+    alt="{{ result.title }}"
+    width="50"
+    height="50"
+  />
+  <div class="card-content">
+    <div>
+      <a href="{{ result.url }}" target="_blank"
+        >{{ result.title }}</a
+      >
+      <span>{{ result.section | lower }}</span>
+    </div>
+    <div>
+      <p>- {{ result.author | firstCap }}</p>
+      <p>{{ result.createdAt | date:"l, Y-m-d" }}</p>
+    </div>
+  </div>
+</div>
